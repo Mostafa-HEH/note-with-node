@@ -23,7 +23,26 @@ const addNote = (title, body) => {
       )} ${body}`
     );
   } else {
-    console.log(chalk.bold.bgRed("note duplcated"));
+    console.log(chalk.bold.bgRed("Note duplcated"));
+  }
+};
+
+const removeNote = (title) => {
+  const notes = loadNotes();
+
+  const isFound = notes.filter((note) => note.title === title);
+
+  if (isFound.length === 1) {
+    const updatedNotes = notes.filter((note) => note.title !== title);
+
+    saveNote(updatedNotes);
+
+    console.log(
+      chalk.bold.bgGreen("Note removed sucessfuly"),
+      `\n- ${chalk.bold.green("Note title:")} ${title}`
+    );
+  } else {
+    console.log(chalk.bold.bgRed("Note not found"));
   }
 };
 
@@ -43,4 +62,4 @@ const saveNote = (data) => {
   writeFileSync("JSON-Nots.json", updatedData);
 };
 
-module.exports = { addNote };
+module.exports = { addNote, removeNote };
