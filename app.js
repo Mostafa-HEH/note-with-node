@@ -1,6 +1,11 @@
 const { parse, command } = require("yargs");
 
-const { addNote, removeNote, listNotes } = require("./notes-functionalty");
+const {
+  addNote,
+  removeNote,
+  listNotes,
+  readNote,
+} = require("./notes-functionalty");
 
 // add Note
 command({
@@ -45,6 +50,22 @@ command({
   describe: "List all notes",
   handler: () => {
     listNotes();
+  },
+});
+
+// read note
+command({
+  command: "read",
+  describe: "read note desription",
+  builder: {
+    title: {
+      describe: "Note title you want to read it's body",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: ({ title }) => {
+    readNote(title);
   },
 });
 

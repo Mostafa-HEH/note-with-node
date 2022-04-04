@@ -60,6 +60,15 @@ const listNotes = () => {
   });
 };
 
+// read note
+const readNote = (title) => {
+  const notes = loadNotes();
+
+  const { body } = notes.find((note) => note.title === title);
+
+  console.log(body);
+};
+
 // Load notes
 const loadNotes = () => {
   try {
@@ -76,4 +85,4 @@ const saveNote = (data) => {
   writeFileSync("JSON-Nots.json", updatedData);
 };
 
-module.exports = { addNote, removeNote, listNotes };
+module.exports = { addNote, removeNote, listNotes, readNote };
