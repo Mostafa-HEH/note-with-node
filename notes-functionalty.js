@@ -27,6 +27,7 @@ const addNote = (title, body) => {
   }
 };
 
+// remove a note
 const removeNote = (title) => {
   const notes = loadNotes();
 
@@ -46,6 +47,19 @@ const removeNote = (title) => {
   }
 };
 
+// list notes
+const listNotes = () => {
+  const notes = loadNotes();
+
+  console.log(
+    chalk.bold.bgWhite.black(`you have ${chalk.bold.red(notes.length)} notes :`)
+  );
+
+  notes.forEach(({ title }, i) => {
+    console.log(`${i + 1}- ${chalk.bold.green(title)}.`);
+  });
+};
+
 // Load notes
 const loadNotes = () => {
   try {
@@ -62,4 +76,4 @@ const saveNote = (data) => {
   writeFileSync("JSON-Nots.json", updatedData);
 };
 
-module.exports = { addNote, removeNote };
+module.exports = { addNote, removeNote, listNotes };
