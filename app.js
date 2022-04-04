@@ -1,6 +1,6 @@
 const { parse, command } = require("yargs");
 
-const { addNote, removeNote } = require("./notes-functionalty");
+const { addNote, removeNote, listNotes } = require("./notes-functionalty");
 
 // add Note
 command({
@@ -36,6 +36,15 @@ command({
   },
   handler: ({ title }) => {
     removeNote(title);
+  },
+});
+
+// list Notes
+command({
+  command: "list",
+  describe: "List all notes",
+  handler: () => {
+    listNotes();
   },
 });
 
